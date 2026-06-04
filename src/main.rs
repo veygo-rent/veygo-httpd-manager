@@ -92,6 +92,7 @@ fn clone_or_pull_repo() {
         let _ = Command::new("git")
             .arg("reset")
             .arg("--hard")
+            .arg("-q")
             .current_dir(CLONE_DIR)
             .status();
         let _ = Command::new("git")
