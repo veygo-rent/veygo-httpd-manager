@@ -10,7 +10,7 @@ RUN cargo install diesel_cli --no-default-features --features postgres
 
 RUN cargo build --release
 
-ENTRYPOINT ./target/release/veygo-task-manager-rust
+ENTRYPOINT ["/app/target/release/veygo-task-manager-rust"]
 
 EXPOSE 8000
 
