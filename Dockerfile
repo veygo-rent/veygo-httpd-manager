@@ -1,16 +1,9 @@
-FROM rust:slim
+FROM debian:bookworm-slim
 
-WORKDIR /app
-
-COPY . ./
-
-RUN apt update && apt install curl pkg-config git libssl-dev libsodium-dev libpq-dev -y
-
-RUN cargo install diesel_cli --no-default-features --features postgres
-
-RUN cargo build --release
-
-ENTRYPOINT ["/app/target/release/veygo-task-manager-rust"]
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates curl libssl3 libsodium23 libpq5 \
+    && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8000
 
+ENTRYPOINT ["/usr/local/bin/api"]
